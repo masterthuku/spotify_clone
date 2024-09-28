@@ -74,7 +74,7 @@ class SignupOrSignin extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    const SignUp(),
+                                     SignUp(),
                               ),
                             );
                           },
@@ -92,7 +92,7 @@ class SignupOrSignin extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    const SignIn(),
+                                     SignIn(),
                               ),
                             );
                           },
