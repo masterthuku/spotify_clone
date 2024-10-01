@@ -5,6 +5,7 @@ import 'package:spotify/common/widgets/appbar/app_bar.dart';
 import 'package:spotify/core/configs/assets/app_images.dart';
 import 'package:spotify/core/configs/assets/app_vectors.dart';
 import 'package:spotify/core/configs/theme/app_colors.dart';
+import 'package:spotify/presentation/home/widgets/news_songs.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,9 +37,22 @@ class _HomePageState extends State<HomePage>
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _homeTopCard(),
             _tabs(),
+            SizedBox(
+              height: 300,
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  const NewsSongs(),
+                  Container(),
+                  Container(),
+                  Container(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -75,40 +89,29 @@ class _HomePageState extends State<HomePage>
   Widget _tabs() {
     return TabBar(
       controller: _tabController,
-      isScrollable: true,
       labelColor: context.isDarkMode ? Colors.white : Colors.black,
+      unselectedLabelColor: Colors.grey,
+      labelStyle: const TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 16,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 16,
+      ), // You can adjust this color as needed
       indicatorColor: AppColors.primary,
-      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 16),
       tabs: const [
-        Text(
-          "News",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 18,
-          ),
+        Tab(
+          text: "News",
         ),
-        Text(
-          "Videos",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 18,
-          ),
-        ),
-        Text(
-          "Artists",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 18,
-          ),
-        ),
-        Text(
-          "Podcasts",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 18,
-          ),
-        ),
+        Tab(text: "Videos"),
+        Tab(text: "Artists"),
+        Tab(text: "Podcasts"),
       ],
+      // Align the tabs properly across the width
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelPadding: const EdgeInsets.symmetric(
+          horizontal: 20, vertical: 20), // Adjust padding if needed
     );
   }
 }
